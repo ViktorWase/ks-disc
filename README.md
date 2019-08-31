@@ -2,4 +2,4 @@
 A discrete version of the Kolmogorov–Smirnov test.
 
 Install using pip
-'pip install ks-disc'
+`pip install ks-disc`
