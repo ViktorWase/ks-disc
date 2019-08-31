@@ -64,7 +64,7 @@ if __name__ == '__main__':
 	from random import randint
 	#y = [250 + randint(0, 10) for _ in range(5)]
 	y = [0]*5
-	for _ in range(5):
+	for _ in range(8):
 		r = randint(0, 4)
 		if random() < 0.00005:
 			r = 1
