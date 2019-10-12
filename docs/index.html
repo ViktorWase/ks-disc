@@ -96,14 +96,11 @@
                                         <pre><code class="language-python">from ksdisc import ksDisc
 from random import randint
 
-y = [0]*5
-for _ in range(8):
-    r = randint(0, 4)
-    y[r] += 1
+# 1-sample test
+y = [randint(1, 3) for _ in range(20)]  # Uniform in [1, 3]
+_cdf = lambda x: 0.0 if x < 0 else min(0.25*x, 1.0) # Uniform in [1, 4]
 
-cdf = [i/5 for i in range(1, 6)]
-
-out = ksDisc(y, cdf)
+out = ksDisc(y, _cdf)
 </code></pre>
                                     </div><!--//code-block-->
                                 </div><!--//section-block-->
