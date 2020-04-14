@@ -74,33 +74,61 @@
                                 <h2 class="section-title">What can it do?</h2>
                                 <div class="section-block">
                                     <p>
-                                        Currently it can only perform a 1-sample test, which is rather slow. More features will be added.
+                                        It can perform a 1-sample test, in which a sample is compared against an analytical function.
+                                        It can also perform a 2-sample test, in which two samples are compared against each other using a permutation test.
                                     </p>
                                     
                                 </div><!--//section-block-->
                                 <div id="f1"  class="section-block">
                                     <h3 class="block-title">1-Sample Test</h3>
-                                    <p>The 1-sample test takes an observed sample and a CDF. It then returns the p-value of the sample being from the given distributions.
+                                    <p>The 1-sample test takes an observed sample and a CDF. It then returns the p-value of the sample being from the given distribution.
                                     </p>
                                     <div class="code-block">
-                                        <p><code>ksDisc(y, cdf)</code></p>
+                                        <p><code>ks_disc(y, cdf)</code></p>
                                     </div><!--//code-block-->
                                     <p>
-                                        y is an n-length array, where each element is a counter of how often that specific number has appeared in the sample.
+                                        y is an n-length array, where each element is a sampled number drawn from a distribution.
                                     </p>
                                     <p>
                                         cdf is a function that takes a number as an input. Note that it must be an increasing function in the span zero to one.
                                     </p>
                                     <div class="code-block">
                                         <h6>Example</h6>
-                                        <pre><code class="language-python">from ksdisc import ksDisc
+                                        <pre><code class="language-python">from ksdisc import ks_disc
 from random import randint
 
 # 1-sample test
 y = [randint(1, 3) for _ in range(20)]  # Uniform in [1, 3]
 _cdf = lambda x: 0.0 if x < 0 else min(0.25*x, 1.0) # Uniform in [1, 4]
 
-out = ksDisc(y, _cdf)
+out = ks_disc(y, _cdf)
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                <div id="f1"  class="section-block">
+                                    <h3 class="block-title">2-Sample Test</h3>
+                                    <p>The 2-sample test takes two observed samples. It then returns the p-value of the samples being from the same distribution.
+                                    </p>
+                                    <div class="code-block">
+                                        <p><code>ks_disc_2sample(samples1, samples2)</code></p>
+                                    </div><!--//code-block-->
+                                    <p>
+                                        samples1 is an n-length array, where each element is a sampled number drawn from a distribution.
+                                    </p>
+                                    <p>
+                                        samples2 is an m-length array, where each element is a sampled number drawn from a distribution.
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>Example</h6>
+                                        <pre><code class="language-python">from ksdisc import ks_disc_2sample
+from random import randint, random
+
+# 2-sample test
+samples1 = [randint(1, 15) for _ in range(1000)]
+samples2 = [randint(1, 15) if random()<0.95 else 3 for _ in range(1000)]
+
+out = ks_disc_2sample(samples1, samples2)
 </code></pre>
                                     </div><!--//code-block-->
                                 </div><!--//section-block-->

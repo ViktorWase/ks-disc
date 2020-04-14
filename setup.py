@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ksdisc",
-    version="0.0.7",
+    version="0.0.9",
     author="Viktor Wase",
     author_email="viktorwase@gmail.com",
     description="Discrete Kolmogorov–Smirnov test",

@@ -1,7 +1,6 @@
 from math import fabs
 from random import random, shuffle
 from copy import copy
-import numpy as np
 
 
 def _calcEcdf(samples, function_length):
@@ -49,7 +48,7 @@ def _calc2sampleKS(samples1_inp, samples2_inp):
 	return max_diff
 
 
-def ksDisc2sample(samples1, samples2, iters=1000):
+def ks_disc_2sample(samples1, samples2, iters=1000):
 	assert len(samples1) > 0
 	assert len(samples2) > 0
 	assert iters > 0
@@ -123,7 +122,7 @@ def _generateSamplesFromCDF(cdf, nr_of_points):
 	return outs
 
 
-def ksDisc(samples, cdf, iters=1000):
+def ks_disc(samples, cdf, iters=1000):
 	# TODO: Throw errors instead of asserts
 	assert iters > 0
 
@@ -152,12 +151,12 @@ if __name__ == '__main__':
 	y = [randint(1, 3) for _ in range(20)]  # Uniform in [1, 3]
 	_cdf = lambda x: 0.0 if x < 0 else min(0.25*x, 1.0) # Uniform in [1, 4]
 
-	out = ksDisc(y, _cdf)
+	out = ks_disc(y, _cdf)
 	print(out)
 
 	# 2-sample test
 	samples1 = [randint(1, 15) for _ in range(1000)]
 	samples2 = [randint(1, 15) if random()<0.95 else 3 for _ in range(1000)]
-	out = ksDisc2sample(samples1, samples2, iters=1000)
+	out = ks_disc_2sample(samples1, samples2, iters=1000)
 
 	print(out)
